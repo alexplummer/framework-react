@@ -6,21 +6,6 @@
 // Imports
 import React from 'react';
 import ReactDOM from 'react-dom';
+import NewComponent from '../components/NewComponent/NewComponent';
 
-class App extends React.Component {
-
-	constructor(props) {
-		super(props);
-	}
-
-	render() {
-		return (
-			<div />
-		);
-	}
-}
-
-// Selector is fine, changes bg to red
-document.querySelector('#app').style.background = 'red';
-
-ReactDOM.render(<App />, document.querySelector('#app'));
+ReactDOM.render(<NewComponent />, document.querySelector('#app'));

@@ -1,20 +1,12 @@
 {
     "components": [
         {
-            "name": "Content left",
-            "description": "Content for the left-hand section"
+            "name": "TestComponent",
+            "description": "A basic sample component"
         },
         {
-            "name": "Content right",
-            "description": "Content for the right-hand section"
-        },
-        {
-            "name": "Header main",
-            "description": "The primary header for the page"
-        },
-        {
-            "name": "Navbar",
-            "description": "The primary navigation for the page"
+            "name": "NewComponent",
+            "description": "A basic sample component"
         }
     ]
 }

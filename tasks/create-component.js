@@ -87,9 +87,9 @@ gulp.task('create-component', (cb) => {
 
 //- Includes
 
-mixin ${this.componentName}()
+mixin ${this.properName}()
     
-    .${this.componentName}
+    .${this.properName}
 `;
 
                 let sassContents =
@@ -98,7 +98,7 @@ mixin ${this.componentName}()
 // ============
 // ${this.componentDesc}
 
-.${this.componentName} {
+.${this.properName} {
 
 }`;
 
@@ -109,24 +109,33 @@ mixin ${this.componentName}()
 // ${this.componentDesc}
 
 // Imports
-import { cl } from '../script/library/cl';
+import React from 'react';
 
-// exampleFunction
-const exampleFunction = function exampleFunction() {
-    cl('${this.properName} exampleFunction loaded');
+class ${this.properName} extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <p className="test">Hi there</p>
+        );
+    }
 }
 
 // Exports
-export { exampleFunction };`;
+export default ${this.properName};
+`;
 
                 let makeDirectory = new Promise((resolve, reject) => {
-                    plugins.mkdirp(paths.dev + '/components/' + this.componentName), resolve();
+                    plugins.mkdirp(paths.dev + '/components/' + this.properName), resolve();
                 });
 
                 makeDirectory.then(()=>{
-                    fs.writeFile(paths.dev + '/components/' + this.componentName + '/_' + this.componentName + '.pug', pugContents);
-                    fs.writeFile(paths.dev + '/components/' + this.componentName + '/_' + this.componentName + '.scss', sassContents);
-                    fs.writeFile(paths.dev + '/components/' + this.componentName + '/' + this.componentName + '.js', jsContents);
+                    fs.writeFile(paths.dev + '/components/' + this.properName + '/_' + this.properName + '.pug', pugContents);
+                    fs.writeFile(paths.dev + '/components/' + this.properName + '/_' + this.properName + '.scss', sassContents);
+                    fs.writeFile(paths.dev + '/components/' + this.properName + '/' + this.properName + '.js', jsContents);
                 });
             }
         }

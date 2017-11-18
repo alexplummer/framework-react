@@ -60,24 +60,26 @@ gulp.task('inject-JSdeps', () => {
 // ============
 // Changes dependent on framework version
 
-gulp.task('js', () => {
+const babelConfig = {
+	exclude: 'node_modules/**',
+	"presets": [['es2015', { modules: false }], 'react'],
+	"plugins": ["external-helpers"],
+	babelrc: false
+};
 
-	// Package up ES6 moduleswith stream
-	const stream = plugins.rollupStream({
-		input: paths.dev + '/script/app.js',
-		sourcemap: true,
-		format: 'iife',
-		name: 'app',
-		plugins: [
-			plugins.rollupPluginReplace({'process.env.NODE_ENV': JSON.stringify( 'development' )}),
-			plugins.rollupPluginJsx({ factory: 'React.createElement' }),
-			plugins.rollupPluginCommonjs({}),			
-			plugins.rollupPluginNodeResolve({ jsnext: true, main: true }),
-			plugins.rollupPluginIncludepaths({ paths: [paths.dev + '/script/'] })
-		]
-	})
-
-	return stream
+const rollupJS = (inputFile, options) => {
+	return () => {
+		return plugins.rollupStream({
+			input: options.basePath + inputFile,
+			format: options.format,
+			sourcemap: options.sourcemap,
+			plugins: [
+				plugins.rollupPluginBabel(babelConfig),
+				plugins.rollupPluginReplace({'process.env.NODE_ENV': JSON.stringify( 'production' )}),
+				plugins.rollupPluginCommonjs({}),			
+				plugins.rollupPluginNodeResolve({ jsnext: true, main: true })
+			]
+		})
 		.on('error', e => {
 			console.error(e.stack);
 
@@ -87,20 +89,21 @@ gulp.task('js', () => {
 			});
 			stream.emit('end');
 		})
-		// Error handling
 		.pipe(plugins.plumber())
-		// Prepare files for sourcemap
-		.pipe(plugins.vinylSourceStream('app.js', paths.dev + '/script/'))
+		.pipe(plugins.vinylSourceStream(inputFile, options.basePath))
 		.pipe(plugins.vinylBuffer())
 		.pipe(plugins.sourcemaps.init({ loadMaps: true }))
-		// Convert ES6
-		.pipe(plugins.babel({ presets: ['es2015', 'react'] }))
-		// Write sourcemap
 		.pipe(plugins.sourcemaps.write('.'))
 		.pipe(gulp.dest(paths.tmp + '/script/'))
 		.pipe(plugins.browserSync.stream());
-});
+	};
+}
 
+gulp.task('js', rollupJS('app.js', {
+	basePath: paths.dev + '/script/',
+	sourcemap: true,
+	format: 'iife'
+}));
 
 // Copy scripts
 // ============
