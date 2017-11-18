@@ -1,10 +1,6 @@
 {
     "components": [
         {
-            "name": "TestComponent",
-            "description": "A basic sample component"
-        },
-        {
             "name": "NewComponent",
             "description": "A basic sample component"
         }
