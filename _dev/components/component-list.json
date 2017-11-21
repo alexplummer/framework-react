@@ -1,7 +1,7 @@
 {
     "components": [
         {
-            "name": "NewComponent",
+            "name": "SampleComponent",
             "description": "A basic sample component"
         }
     ]

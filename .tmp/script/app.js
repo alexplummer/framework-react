@@ -988,30 +988,39 @@ var possibleConstructorReturn = function (self, call) {
   return call && (typeof call === "object" || typeof call === "function") ? call : self;
 };
 
-// NewComponent
+// SampleComponent
 // ============
 // A basic sample component
 
 // Imports
-var NewComponent = function (_React$Component) {
-    inherits(NewComponent, _React$Component);
+var SampleComponent = function (_React$Component) {
+    inherits(SampleComponent, _React$Component);
 
-    function NewComponent(props) {
-        classCallCheck(this, NewComponent);
-        return possibleConstructorReturn(this, (NewComponent.__proto__ || Object.getPrototypeOf(NewComponent)).call(this, props));
+    function SampleComponent(props) {
+        classCallCheck(this, SampleComponent);
+        return possibleConstructorReturn(this, (SampleComponent.__proto__ || Object.getPrototypeOf(SampleComponent)).call(this, props));
     }
 
-    createClass(NewComponent, [{
+    createClass(SampleComponent, [{
         key: "render",
         value: function render() {
             return react.createElement(
-                "p",
-                { className: "test" },
-                "Hi there"
+                "div",
+                { className: "SampleComponent" },
+                react.createElement(
+                    "h4",
+                    null,
+                    "Welcome to your new blank build!"
+                ),
+                react.createElement(
+                    "p",
+                    null,
+                    "Add in some Sass vars in setup.scss then create some components to get started."
+                )
             );
         }
     }]);
-    return NewComponent;
+    return SampleComponent;
 }(react.Component);
 
 // App
@@ -1019,7 +1028,7 @@ var NewComponent = function (_React$Component) {
 // All of JS is organised from here
 
 // Imports
-reactDom.render(react.createElement(NewComponent, null), document.querySelector('#app'));
+reactDom.render(react.createElement(SampleComponent, null), document.querySelector('#app'));
 
 }());
 //# sourceMappingURL=app.js.map

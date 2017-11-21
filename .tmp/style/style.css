@@ -1799,8 +1799,8 @@ body {
 
 @font-face {
   font-family: 'fontello';
-  src: url("../font/fontello.eot?86468372");
-  src: url("../font/fontello.eot?86468372#iefix") format("embedded-opentype"), url("../font/fontello.woff2?86468372") format("woff2"), url("../font/fontello.woff?86468372") format("woff"), url("../font/fontello.ttf?86468372") format("truetype"), url("../font/fontello.svg?86468372#fontello") format("svg");
+  src: url("../font/fontello.eot?24642355");
+  src: url("../font/fontello.eot?24642355#iefix") format("embedded-opentype"), url("../font/fontello.woff2?24642355") format("woff2"), url("../font/fontello.woff?24642355") format("woff"), url("../font/fontello.ttf?24642355") format("truetype"), url("../font/fontello.svg?24642355#fontello") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -1810,7 +1810,7 @@ body {
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello';
-    src: url('../font/fontello.svg?86468372#fontello') format('svg');
+    src: url('../font/fontello.svg?24642355#fontello') format('svg');
   }
 }
 */
@@ -1895,6 +1895,16 @@ body, html {
   backface-visibility: hidden; }
 
 /* inject:componentImports */
+.SampleComponent {
+  position: relative;
+  box-shadow: 0 2px 6px 0px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  background: #eee;
+  border-bottom: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 3.375rem;
+  margin: 3.375rem; }
+
 /* endinjectComponent */
 
 /*# sourceMappingURL=style.css.map */

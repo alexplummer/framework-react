@@ -24,7 +24,8 @@ let gulp = require('gulp'),
         pattern: ['*'],
         replaceString: /\bgulp[\-.]/,
         lazy: true,
-        camelize: true
+        camelize: true,
+		scope: ['devDependencies']
     });
 
 
@@ -119,7 +120,9 @@ class ${this.properName} extends React.Component {
 
     render() {
         return (
-            <p className="test">Hi there</p>
+            <div className="${this.properName}">
+                <p>${this.properName} loaded!</p>
+            </div>
         );
     }
 }
@@ -128,14 +131,37 @@ class ${this.properName} extends React.Component {
 export default ${this.properName};
 `;
 
+                let testContents =
+                    `
+// ${this.properName}
+// ============
+// ${this.componentDesc}
+
+// Imports
+import React from 'react';
+import renderer from 'react-test-renderer';
+import ${this.properName} from './${this.properName}';
+
+describe('${this.properName} renders correctly', () => {
+    it('renders correctly', () => {
+        const props = {};
+        const rendered = renderer.create(
+            <${this.properName} props={props} />
+        );
+        expect(rendered.toJSON()).toMatchSnapshot();
+    });
+});
+`;
+
                 let makeDirectory = new Promise((resolve, reject) => {
                     plugins.mkdirp(paths.dev + '/components/' + this.properName), resolve();
                 });
 
-                makeDirectory.then(()=>{
+                makeDirectory.then(() => {
                     fs.writeFile(paths.dev + '/components/' + this.properName + '/_' + this.properName + '.pug', pugContents);
                     fs.writeFile(paths.dev + '/components/' + this.properName + '/_' + this.properName + '.scss', sassContents);
                     fs.writeFile(paths.dev + '/components/' + this.properName + '/' + this.properName + '.js', jsContents);
+                    fs.writeFile(paths.dev + '/components/' + this.properName + '/' + this.properName + '.test.js', testContents);
                 });
             }
         }

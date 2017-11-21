@@ -6,6 +6,6 @@
 // Imports
 import React from 'react';
 import ReactDOM from 'react-dom';
-import NewComponent from '../components/NewComponent/NewComponent';
+import SampleComponent from '../components/SampleComponent/SampleComponent';
 
-ReactDOM.render(<NewComponent />, document.querySelector('#app'));
+ReactDOM.render(<SampleComponent />, document.querySelector('#app'));
