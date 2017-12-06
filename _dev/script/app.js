@@ -6,6 +6,15 @@
 // Imports
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SampleComponent from '../components/SampleComponent/SampleComponent';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import items from '../store/reducers';
+import ListOfThings from '../components/ListOfThings/ListOfThings';
 
-ReactDOM.render(<SampleComponent />, document.querySelector('#app'));
+let store = createStore(items);
+
+ReactDOM.render(
+    <Provider store={store}>
+        <ListOfThings />
+    </Provider>
+    , document.querySelector('#app'));

@@ -1,0 +1,31 @@
+
+// TextList
+// ============
+// A basic sample component
+
+.TextList {
+    @include shadow;
+    margin: $size-m auto;
+    background: #eee;
+    border: 1px solid #ddd;
+    padding: $size-m;
+    width: 450px;
+    
+    h1 {
+        @extend .h4;
+        padding-bottom: $size-s;
+        border-bottom: 1px solid #ccc;
+    }
+    form {
+        @extend .pure-form;
+
+        input[type="text"] {
+            float: left;
+            padding: $size-s;
+        }
+        button {
+            color: #fff;
+            margin-left: $size-m;
+        }
+    }
+}

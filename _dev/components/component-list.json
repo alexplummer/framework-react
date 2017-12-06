@@ -1,7 +1,15 @@
 {
     "components": [
         {
-            "name": "SampleComponent",
+            "name": "ListOfThings",
+            "description": "A basic sample component"
+        },
+        {
+            "name": "TextListContainer",
+            "description": "A basic sample component"
+        },
+        {
+            "name": "TextList",
             "description": "A basic sample component"
         }
     ]

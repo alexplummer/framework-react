@@ -64,5 +64,7 @@
 // User components, these are auto injected by Gulp when saved to folder
 
 /* inject:componentImports */
-@import "../components/SampleComponent/_SampleComponent.scss";
+@import "../components/ListOfThings/_ListOfThings.scss";
+@import "../components/TextList/_TextList.scss";
+@import "../components/TextListContainer/_TextListContainer.scss";
 /* endinjectComponent */
